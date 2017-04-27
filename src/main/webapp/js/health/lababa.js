@@ -40,7 +40,7 @@ var vm = new Vue({
 		},
 		methods : {
 			showList:function(){
-				
+				mui('#Popover_0').popover('hide');
 					jQuery.ajax({	
 								url : "../../health/lababa/list",
 								data : {start : 0,count : 100,babyid:1,record_time:vm.record_time},
@@ -53,6 +53,7 @@ var vm = new Vue({
 					vm.showLababaList = true;
 			},			
 			showForm:function(){
+				mui('#Popover_0').popover('hide');
 				vm.showLababaForm = true;
 				vm.showLababaList = false;
 			},
@@ -96,18 +97,13 @@ var vm = new Vue({
 
 		
 			},
-			list : function() {
-				
-			},
-			datePick : function(){
-						var optionsJson = document.getElementById('record_time_control').getAttribute('data-options') || '{}';
-						var options = JSON.parse(optionsJson);
-						
-						var picker = new mui.DtPicker(options);
-						picker.show(function(rs) {
-							vm.record_time = rs.text;						
-							picker.dispose();
-						});
+			openStatis : function() {
+				var webview = mui.openWindow({
+				    url:'static.html',
+				    extras:{
+				        name:'mui'  //扩展参数
+				    }
+				});
 			}
 		}
 	});
