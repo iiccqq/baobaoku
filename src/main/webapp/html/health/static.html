@@ -26,7 +26,6 @@
 			}
 		</style>
 		<script src="../../js/mui.min.js"></script>
-    	<script src="../../js/jquery-3.2.0.min.js"></script>
 	</head>
 
 	<body>
@@ -65,7 +64,7 @@
 			var byId = function(id) {
 				return document.getElementById(id);
 			};
-			 jQuery.ajax({	
+			 mui.ajax({	
 					url : "../../health/static/statusStatic",
 					success : getOption,
 					dataType:'json'
