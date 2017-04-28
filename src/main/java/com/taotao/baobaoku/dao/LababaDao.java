@@ -31,9 +31,10 @@ public class LababaDao {
 
 	
 
-	public void updateTodayStatus(Integer babyid,String baby_name,Integer status,Integer count) {		
-		String sql = "replace into health_lababa(babyid,baby_name,record_time,status,create_time,count) value(?,?,?,?,?,?)";
-		jdbcTemplate.update(sql,babyid,baby_name,new Date(),status,new Date(),count);
-	}
+	public void updateTodayStatus(Integer babyid, String baby_name, Integer status, Integer count, Date record_time)
+	  {
+	    String sql = "replace into health_lababa(babyid,baby_name,record_time,status,create_time,count) value(?,?,?,?,?,?)";
+	    this.jdbcTemplate.update(sql, new Object[] { babyid, baby_name, record_time, status, new Date(), count });
+	  }
 
 }

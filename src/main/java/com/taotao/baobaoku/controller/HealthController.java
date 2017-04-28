@@ -2,12 +2,15 @@ package com.taotao.baobaoku.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,13 +48,27 @@ public class HealthController {
 		r.put("total", pageInfo.getTotal());
 		return r;
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/{babyid}")
-	public R updateStatus(@PathVariable Integer babyid,Integer status,Integer count) throws IOException {
-		String baby_name = "陶陶";
-		lababaDao.updateTodayStatus(babyid,baby_name,status,count);	
-		return new R();
-	}
+	 
+	  @ResponseBody
+	  @RequestMapping({"/{babyid}"})
+	  public R updateStatus(@PathVariable Integer babyid, Integer status, Integer count, String record_time)
+	    throws IOException
+	  {
+	    String baby_name = "陶陶";
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    try
+	    {
+	      Date rt = StringUtils.isBlank(record_time) ? new Date() : sdf.parse(record_time);
+	      
+	      this.lababaDao.updateTodayStatus(babyid, baby_name, status, count, rt);
+	    }
+	    catch (ParseException e)
+	    {
+	      e.printStackTrace();
+	      new R();return R.error();
+	    }
+	    Date rt;
+	    return new R();
+	  }
 
 }
