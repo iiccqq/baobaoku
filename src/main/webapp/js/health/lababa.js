@@ -1,7 +1,7 @@
 mui.ready(function() {
 
 	mui.ajax({
-		url : "../../health/lababa/list",
+		url : "http://baobaoku.ren:8080/health/lababa/list",
 		data : {
 			start : 0,
 			count : 100,
@@ -50,7 +50,7 @@ var vm = new Vue({
 		showList : function() {
 			mui('#Popover_0').popover('hide');
 			mui.ajax({
-				url : "../../health/lababa/list",
+				url : "http://baobaoku.ren:8080/html/health/lababa/list",
 				data : {
 					start : 0,
 					count : 100,
@@ -69,6 +69,9 @@ var vm = new Vue({
 			mui('#Popover_0').popover('hide');
 			vm.showLababaForm = true;
 			vm.showLababaList = false;
+			vm.record_time = new Date().Format("yyyy-MM-dd");
+			vm.count = 1;
+			vm.status = 1;
 		},
 		addCount : function() {
 			vm.count++;
@@ -89,7 +92,7 @@ var vm = new Vue({
 			vm.showLababaForm = false;
 			vm.showLababaList = true;
 			mui.ajax({
-				url : "../../health/lababa/1",
+				url : "http://baobaoku.ren:8080/health/lababa/1",
 				data : {
 					start : 0,
 					count : 100,
@@ -100,7 +103,7 @@ var vm = new Vue({
 				success : function(r) {
 					vm.lababaList = r.list;
 					mui.ajax({
-						url : "../../health/lababa/list",
+						url : "http://baobaoku.ren:8080/health/lababa/list",
 						data : {
 							start : 0,
 							count : 100,
@@ -146,7 +149,7 @@ vm.dicList = [ {
 } ];
 
 mui.ajax({
-	url : "../../health/lababa/list",
+	url : "http://baobaoku.ren:8080/health/lababa/list",
 	data : {
 		start : 0,
 		count : 100,
